@@ -12,5 +12,5 @@ Camera.destroy_all
 Asset.destroy_all
 
 u = User.create(email:'kyle@tomanelli.com',password:'poopy',activated:true)
-scene1 = Scene.create(user_id:u.id,scene_string:'this is a nice test scene_String')
-camera1 = Camera.create(scene_id:scene1.id,camera_string:'this is a nice test camera_string')
+# scene1 = Scene.create(user_id:u.id,scene_string:'this is a nice test scene_String')
+# camera1 = Camera.create(scene_id:scene1.id,camera_string:'this is a nice test camera_string')
