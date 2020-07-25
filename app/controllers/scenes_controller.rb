@@ -1,7 +1,7 @@
 class ScenesController < ApplicationController
     def load
         @user = User.first
-        render json: {scene:Scene.second,camera:Camera.first}
+        render json: {scene:Scene.first,camera:Camera.first}
     end
     def load_new        
         @user = User.first
