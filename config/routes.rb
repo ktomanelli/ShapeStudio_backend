@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  post '/scene/save', to: 'scenes#save'
-  get '/scene/load', to: 'scenes#load'
+  post '/scenes/save', to: 'scenes#save'
+  get '/scenes/load/:id', to: 'scenes#load'
+  get '/scenes', to: 'scenes#index'
+  patch '/scenes/:id', to: 'scenes#update'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

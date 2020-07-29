@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_14_204326) do
+ActiveRecord::Schema.define(version: 2020_07_26_025006) do
 
   create_table "assets", force: :cascade do |t|
     t.integer "user_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_204326) do
     t.string "scene_string"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "save_name"
   end
 
   create_table "users", force: :cascade do |t|

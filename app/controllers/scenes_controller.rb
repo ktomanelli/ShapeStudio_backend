@@ -1,7 +1,8 @@
 class ScenesController < ApplicationController
     def load
         @user = User.first
-        render json: {scene:Scene.first,camera:Camera.first}
+        @scene = Scene.find(params[:id])
+        render json: {scene:@scene}
     end
     def load_new        
         @user = User.first
@@ -9,7 +10,23 @@ class ScenesController < ApplicationController
     end
     def save
         @user = User.first
-        scene = Scene.create(user_id:@user.id,scene_string:params[:scene])
-        Camera.create(scene_id:scene.id,camera_string:params[:camera])
+        Scene.create(user_id:@user.id,scene_string:params[:scene],save_name:params[:save_name])
     end
+    def index
+        @user = User.first
+        @scenes = @user.scenes
+        render json: @scenes
+    end
+    def update
+        @user = User.first
+        @scene = Scene.find(params[:id])
+        @scene.update(:scene_string=>params[:scene_string])
+    end
+
+    # private
+    # def scene_params
+    #   params.require(:scene).permit(:scene_string)
+    # end
 end
+
+
