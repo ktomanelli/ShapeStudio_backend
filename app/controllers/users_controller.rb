@@ -6,7 +6,6 @@ class UsersController < ApplicationController
     end
 
     def create
-        byebug
         @user = User.create(params.permit(:email,:password))
         if @user.valid?
             @token = encode_token({user_id: @user.id})
