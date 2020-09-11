@@ -2,9 +2,8 @@ class ScenesController < ApplicationController
     before_action :authorized
 
     def load
-        @user = User.first
-        @scene = Scene.find(params[:id])
-        render json: {scene:@scene}
+        scene = @user.scenes.find(params[:id])
+        render json: {scene:scene}
     end
 
     def save
@@ -12,13 +11,13 @@ class ScenesController < ApplicationController
     end
 
     def index
-        @scenes = @user.scenes
-        render json: @scenes
+        scenes = @user.scenes
+        render json: scenes
     end
 
     def update
-        @scene = Scene.find(params[:id])
-        @scene.update(:scene_string=>params[:scene_string])
+        scene = @user.scenes.find(params[:id])
+        scene.update(:scene_string=>params[:scene_string])
     end
 
 end
