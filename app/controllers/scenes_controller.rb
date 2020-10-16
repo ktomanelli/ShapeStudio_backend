@@ -7,7 +7,9 @@ class ScenesController < ApplicationController
     end
 
     def save
-        Scene.create(user_id:@user.id,scene_string:params[:scene],save_name:params[:save_name])
+        scene = Scene.new(scene_params)
+        scene.user_id = @user.id
+        scene.save()
     end
 
     def index
@@ -20,6 +22,10 @@ class ScenesController < ApplicationController
         scene.update(:scene_string=>params[:scene_string])
     end
 
+    private
+    def scene_params
+        params.require(:scene).permit(:save_name,:scene_string,:screenshot)
+    end
 end
 
 
