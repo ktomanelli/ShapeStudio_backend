@@ -18,8 +18,10 @@ class IssuesController < ApplicationController
                 if(issue.valid?)
                     render json: { status:200 }
                 else
-                    raise StandardError.new("Unable to create issue. Please try again or email kyle@shape.studio")
+                    raise StandardError.new("Unable to submit bug. Please try again or email kyle@shape.studio")
                 end
+            else
+                raise StandardError.new("Unable to submit bug. Please try again or email kyle@shape.studio")
             end
         rescue=>e
             render json: {error:e}
