@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   post '/users', to: 'users#create'
   post '/scenes/save', to: 'scenes#save'
   post '/users/login', to: 'users#login'
+  post '/issues', to: 'issues#create'
   
   patch '/scenes/:id', to: 'scenes#update'
+
+
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

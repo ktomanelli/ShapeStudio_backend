@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_16_161341) do
+ActiveRecord::Schema.define(version: 2020_11_24_222805) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 2020_10_16_161341) do
   create_table "cameras", force: :cascade do |t|
     t.integer "scene_id"
     t.string "camera_string"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "issue_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

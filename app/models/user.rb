@@ -4,4 +4,5 @@ class User < ApplicationRecord
     has_many :scenes
     has_many :cameras
     has_many :assets
+    has_many :issues
 end

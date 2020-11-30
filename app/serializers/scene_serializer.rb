@@ -7,11 +7,4 @@ class SceneSerializer < ActiveModel::Serializer
       rails_blob_path(object.screenshot, only_path: true)
     end
   end
-  # def screenshot
-  #   if object.screenshot.attached?
-  #     {
-  #       url: rails_blob_url(object.screenshot)
-  #     }
-  #   end
-  # end
 end
