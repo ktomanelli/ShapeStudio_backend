@@ -19,7 +19,6 @@ class ScenesController < ApplicationController
 
     def update
         scene = @user.scenes.find(params[:id])
-        # byebug
         scene.update(scene_params)
     end
 
