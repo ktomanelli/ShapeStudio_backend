@@ -32,5 +32,9 @@ class UsersController < ApplicationController
             token: token
         }
     end
+
+    def hide_notice
+        @user.update(show_notice:'false')
+    end
     
 end
