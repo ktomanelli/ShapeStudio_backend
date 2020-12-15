@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authorized, only: [:stay_logged_in]
+    before_action :authorized, only: [:profile,:stay_logged_in,:hide_notice]
 
     def profile
         render json: { user: UserSerializer.new(current_user) }, status: :accepted
@@ -34,7 +34,10 @@ class UsersController < ApplicationController
     end
 
     def hide_notice
-        @user.update(show_notice:'false')
+        @user.update(show_notice:false)
+        render json:{
+            status:200
+        }
     end
     
 end

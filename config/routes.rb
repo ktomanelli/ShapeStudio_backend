@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get '/scenes/load/:id', to: 'scenes#load'
   get '/scenes', to: 'scenes#index'
   get '/users/stay_logged_in', to: 'users#stay_logged_in'
-  get '/notice', to: 'notice#show'
+  get '/notices', to: 'notices#show'
 
   post '/users', to: 'users#create'
   post '/scenes/save', to: 'scenes#save'
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post '/issues', to: 'issues#create'
   
   patch '/scenes/:id', to: 'scenes#update'
-  patch '/notice/hide', to: 'users#hide_notice'
+  patch '/notices/hide', to: 'users#hide_notice'
 
 
   

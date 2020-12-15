@@ -1,8 +1,12 @@
 class NoticesController < ApplicationController
 
     def show
-        notice = Notice.last()
-        render json: {notice:notice}
+        if(@user.show_notice==true) 
+            notice = Notice.last()
+            render json: {notice:notice}
+        else
+            render json: {notice:null}
+        end
     end
 
 end
