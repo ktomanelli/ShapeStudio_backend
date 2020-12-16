@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/scenes', to: 'scenes#index'
   get '/users/stay_logged_in', to: 'users#stay_logged_in'
   get '/notices', to: 'notices#show'
+  get '/test', to:  proc { [200, {}, ['']] }
 
   post '/users', to: 'users#create'
   post '/scenes/save', to: 'scenes#save'
