@@ -45,3 +45,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rest-client'
+
+gem "aws-sdk-s3"
