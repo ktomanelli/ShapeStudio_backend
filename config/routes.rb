@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
-  get '/scenes/load/:id', to: 'scenes#load'
-  get '/scenes', to: 'scenes#index'
+  get '/objects/load/:id', to: 'three_objects#load'
+  get '/objects', to: 'three_objects#index'
   get '/users/stay_logged_in', to: 'users#stay_logged_in'
   get '/notices', to: 'notices#show'
   get '/test', to:  proc { [200, {}, ['hello']] }
 
   post '/users', to: 'users#create'
-  post '/scenes/save', to: 'scenes#save'
+  post '/objects/save', to: 'three_objects#save'
   post '/users/login', to: 'users#login'
   post '/issues', to: 'issues#create'
   
-  patch '/scenes/:id', to: 'scenes#update'
+  patch '/objects/:id', to: 'three_objects#update'
   patch '/notices/hide', to: 'users#hide_notice'
 
 

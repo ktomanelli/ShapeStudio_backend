@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_220203) do
+ActiveRecord::Schema.define(version: 2022_02_02_023008) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -44,7 +45,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_220203) do
   end
 
   create_table "cameras", force: :cascade do |t|
-    t.integer "scene_id"
+    t.uuid "threeobject_id"
     t.string "camera_string"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -57,6 +58,57 @@ ActiveRecord::Schema.define(version: 2020_12_03_220203) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "materials", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "material_id"
+    t.float "alphaTest"
+    t.boolean "alphaToCoverage"
+    t.float "blendDstAlpha"
+    t.float "blendEquationAlpha"
+    t.float "blendSrcAlpha"
+    t.boolean "clipShadows"
+    t.boolean "colorWrite"
+    t.boolean "clipIntersection"
+    t.boolean "depthTest"
+    t.boolean "depthWrite"
+    t.boolean "fog"
+    t.boolean "stencilWrite"
+    t.float "stencilRef"
+    t.float "stencilWriteMask"
+    t.float "stencilFuncMask"
+    t.string "name"
+    t.boolean "needsUpdate"
+    t.float "opacity"
+    t.boolean "polygonOffset"
+    t.float "polygonOffsetFactor"
+    t.float "polygonOffsetUnits"
+    t.string "precision"
+    t.boolean "premultipliedAlpha"
+    t.boolean "dithering"
+    t.boolean "toneMapped"
+    t.boolean "transparent"
+    t.string "object_type"
+    t.boolean "vertexColors"
+    t.boolean "visible"
+    t.float "version"
+    t.string "blendDst"
+    t.string "blendEquation"
+    t.string "blending"
+    t.string "blendSrc"
+    t.jsonb "clippingPlanes"
+    t.jsonb "defines"
+    t.string "depthFunc"
+    t.string "format"
+    t.string "stencilFunc"
+    t.string "stencilFail"
+    t.string "stencilZFail"
+    t.string "stencilZPass"
+    t.string "side"
+    t.string "shadowSide"
+    t.jsonb "userData"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "notices", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -64,21 +116,45 @@ ActiveRecord::Schema.define(version: 2020_12_03_220203) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "scenes", force: :cascade do |t|
+  create_table "three_objects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "user_id"
     t.string "scene_string"
+    t.string "save_name"
+    t.string "object_type"
+    t.string "name"
+    t.uuid "parent"
+    t.boolean "matrixAutoUpdate"
+    t.boolean "visible"
+    t.boolean "castShadow"
+    t.boolean "receiveShadow"
+    t.boolean "frustumCulled"
+    t.boolean "matrixWorldNeedsUpdate"
+    t.integer "renderOrder"
+    t.jsonb "up"
+    t.jsonb "position"
+    t.jsonb "rotation"
+    t.jsonb "quaternion"
+    t.jsonb "scale"
+    t.jsonb "modelViewMatrix"
+    t.jsonb "normalMatrix"
+    t.jsonb "matrix"
+    t.jsonb "matrixWorld"
+    t.jsonb "layers"
+    t.jsonb "userData"
+    t.jsonb "animations"
+    t.uuid "customDepthMaterial_id"
+    t.uuid "customDistanceMaterial_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "save_name"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
     t.boolean "activated"
+    t.boolean "show_notice"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "show_notice"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

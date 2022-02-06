@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
-Scene.destroy_all
+ThreeObject.destroy_all
 Camera.destroy_all
 Asset.destroy_all
 

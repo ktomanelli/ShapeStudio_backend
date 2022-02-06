@@ -1,3 +1,3 @@
 class CameraSerializer < ActiveModel::Serializer
-  attributes :id, :scene_id, :camera_string
+  attributes :id, :object_id, :camera_string
 end
