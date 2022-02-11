@@ -1,12 +1,10 @@
 class CreateThreeObjects < ActiveRecord::Migration[6.0]
   def change
     create_table :three_objects, id: :uuid do |t|
-      t.integer :user_id
-      t.string :scene_string
-      t.string :save_name
+      t.uuid :project_id
       t.string :object_type 
       t.string :name 
-      t.uuid :parent 
+      t.references :parent, foreign_key: {to_table: :three_objects}, type: :uuid
       t.boolean :matrixAutoUpdate 
       t.boolean :visible 
       t.boolean :castShadow 

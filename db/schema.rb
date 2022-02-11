@@ -37,29 +37,15 @@ ActiveRecord::Schema.define(version: 2022_02_02_023008) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "assets", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "assets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "project_id"
     t.string "file_path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "cameras", force: :cascade do |t|
-    t.uuid "threeobject_id"
-    t.string "camera_string"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "issues", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "issue_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "materials", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "material_id"
+    t.uuid "project_id"
     t.float "alphaTest"
     t.boolean "alphaToCoverage"
     t.float "blendDstAlpha"
@@ -116,13 +102,19 @@ ActiveRecord::Schema.define(version: 2022_02_02_023008) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "projects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.string "name"
+    t.jsonb "file_schema"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "three_objects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "user_id"
-    t.string "scene_string"
-    t.string "save_name"
+    t.uuid "project_id"
     t.string "object_type"
     t.string "name"
-    t.uuid "parent"
+    t.uuid "parent_id"
     t.boolean "matrixAutoUpdate"
     t.boolean "visible"
     t.boolean "castShadow"
@@ -146,9 +138,10 @@ ActiveRecord::Schema.define(version: 2022_02_02_023008) do
     t.uuid "customDistanceMaterial_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["parent_id"], name: "index_three_objects_on_parent_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
     t.boolean "activated"
@@ -158,4 +151,5 @@ ActiveRecord::Schema.define(version: 2022_02_02_023008) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "three_objects", "three_objects", column: "parent_id"
 end

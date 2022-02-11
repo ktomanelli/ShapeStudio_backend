@@ -1,8 +1,7 @@
 class ThreeObjectSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
   attributes :id,
-  :user_id,
-  :save_name,
+  :project_id,
   :screenshot,
   :object_type,
   :name,

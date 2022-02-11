@@ -1,7 +1,7 @@
 class CreateMaterialsTable < ActiveRecord::Migration[6.0]
   def change
     create_table :materials, id: :uuid do |t|
-      t.integer :material_id
+      t.uuid :project_id
       t.float :alphaTest
       t.boolean :alphaToCoverage
       t.float :blendDstAlpha
